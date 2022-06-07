@@ -13,9 +13,9 @@ namespace Console_Text_Editor
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Edit-> ");
             Console.ForegroundColor = ConsoleColor.Gray;
-            string text = $"1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/" +
-               $"30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65";
-            //string text = $"1/2/3/4/5/6/7/8/9/10/11/12/13";
+            /*string text = $"1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/" +
+               $"30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65";*/
+            string text = $"";
             text = ReadLine(text);
             Console.WriteLine("       "+text);
             /* ConsoleWindow.QuickEditMode(true);
@@ -190,45 +190,56 @@ namespace Console_Text_Editor
                     Console.Write(Environment.NewLine);
                     break;
                 }
-
+                ///------------RIGHT------------
                 else if (info.Key == ConsoleKey.RightArrow)
                 {
+                    
                     void GoDown()
                     {
+                        Console.CursorLeft = Console.BufferWidth - 3;
+                        defPos = Console.CursorLeft;
+                        GoToDefautPosition(chars, defPos - 1, defPos - 7, defPosY: (Console.CursorTop == 0) ? 0 : --Console.CursorTop);
+                        Console.CursorTop++;
                         Console.CursorLeft = 0;
-                        defPos = Console.CursorLeft;
-                        GoToDefautPosition(chars, defPos - 1, defPos - 7, defPosY: Console.CursorTop);
-                        Console.CursorTop = ((int)((chars.Count + 7) / Console.BufferWidth) > Console.CursorTop) ? Console.CursorTop : Console.CursorTop;
-                        defPos = Console.CursorLeft;
-                        GoToDefautPosition(chars, defPos - 1, defPos - 7, defPosY: Console.CursorTop);
-                        --Console.CursorLeft;
                     }
-                    if (Console.CursorLeft < chars.Count+8)
-                    {
-                        try
-                        {
-                            Console.CursorLeft -= 1;
-                        } catch
-                        {
-                            Console.CursorLeft = 0;
-                            Console.CursorTop = ((int)((chars.Count + 7) / Console.BufferWidth) > Console.CursorTop) ? Console.CursorTop : Console.CursorTop;
-                        } finally
-                        {
-                            defPos = Console.CursorLeft;
-                            GoToDefautPosition(chars, defPos-1, defPos - 7, defPosY: Console.CursorTop);
-                            if (Console.CursorLeft + 1 >= 80) GoDown();
-                            else ++Console.CursorLeft;
-                        }
 
+                    int lastColumnFilledSpace = (chars.Count + 7) % Console.BufferWidth;
+                    
+                    if ( (Console.CursorTop==(int)((chars.Count+7)/Console.BufferWidth) && Console.CursorLeft <= lastColumnFilledSpace+1)
+                        || Console.CursorTop <= (int)((chars.Count + 7) / Console.BufferWidth))
+                    {
+                        if(Console.CursorTop == (int)((chars.Count + 7) / Console.BufferWidth ))
+                        {
+                            if (Console.CursorLeft >= lastColumnFilledSpace)
+                            {
+                                --Console.CursorLeft;
+                                continue;
+                            }
+                        }
+                        if (Console.CursorLeft == 0)
+                        {
+                            GoDown();
+                        } else
+                        {
+                            Console.CursorLeft -= (Console.CursorLeft <= 0) ? 0 : 1;
+                            defPos = Console.CursorLeft;
+                            GoToDefautPosition(chars, defPos - 1, defPos - 7, defPosY: Console.CursorTop);
+                            Console.CursorLeft +=  1;
+                        }
                     }
-                    else
+                    else if(Console.CursorTop <= (int)((chars.Count + 7) / Console.BufferWidth))
                     {
                         defPos = Console.CursorLeft-1;
                         GoToDefautPosition(chars, defPos, defPos - 7, defPosY: Console.CursorTop);
                         --Console.CursorLeft;
+                    } else if (Console.CursorTop == (int)((chars.Count + 7) / Console.BufferWidth + 1))
+                    {
+                        --Console.CursorTop;
+                        Console.CursorLeft = Console.BufferWidth - 1;
                     }
                     
                 }
+                ///------------LEFT------------
                 else if (info.Key == ConsoleKey.LeftArrow )
                 {
                     void GoToUP()
@@ -283,16 +294,19 @@ namespace Console_Text_Editor
                     }
 
                 }
+                ///------------UP------------
                 else if (info.Key == ConsoleKey.UpArrow)
                 {
                     int CursorTop = Console.CursorTop;
                     if (CursorTop == 0)
                     {
                         defPos = --Console.CursorLeft;
-                        GoToDefautPosition(chars, defPos, defPos - 7, defPosY: Console.CursorTop);
+                        GoToDefautPosition(chars, defPos-1, defPos - 7, defPosY: Console.CursorTop);
                     }
                     else
                     {
+
+                        Console.CursorLeft = (Console.CursorTop - 1 == 0) ? (Console.CursorLeft<8)?7:Console.CursorLeft:Console.CursorLeft;
                         --Console.CursorTop;
                         defPos = Console.CursorLeft;
                         GoToDefautPosition(chars, defPos-2, defPos - 7, defPosY: Console.CursorTop);
@@ -303,22 +317,34 @@ namespace Console_Text_Editor
                     }
 
                 }
+                ///------------DOWN------------
                 else if (info.Key == ConsoleKey.DownArrow)
                 {
                     int CursorTop = Console.CursorTop;
-                    if (CursorTop == 0)
+                    int textBuferSize = Console.BufferWidth * (Console.CursorTop + 1);
+                    int lastColumnFilledSpace = (chars.Count + 7) % Console.BufferWidth;
+
+                    if (CursorTop ==(int)((chars.Count + 7) / Console.BufferWidth-1) && Console.CursorLeft >= lastColumnFilledSpace)
                     {
-                        defPos = --Console.CursorLeft;
-                        GoToDefautPosition(chars, defPos - 1, defPos - 7, defPosY: Console.CursorTop);
+                        Console.CursorLeft = lastColumnFilledSpace;
+                        GoToDefautPosition(chars, Console.CursorLeft-1, Console.CursorLeft - 7, defPosY: Console.CursorTop);
+                        ++Console.CursorTop;
+                    }
+                    else if (CursorTop == (int)((chars.Count + 7) / Console.BufferWidth) && Console.CursorLeft >= lastColumnFilledSpace)
+                    {
+                        Console.CursorLeft = lastColumnFilledSpace;
+                        GoToDefautPosition(chars, Console.CursorLeft-1, Console.CursorLeft - 7, defPosY: Console.CursorTop);
                     }
                     else
                     {
-
-                        Console.SetCursorPosition(--Console.CursorLeft, --Console.CursorTop);
-                        defPos = --Console.CursorLeft;
+                        Console.SetCursorPosition((Console.CursorLeft==0)?0: Console.CursorLeft - 1, Console.CursorTop);
+                        defPos = Console.CursorLeft;
                         GoToDefautPosition(chars, defPos, defPos - 7, defPosY: Console.CursorTop);
+                        defPos = Console.CursorLeft;
+                        Console.SetCursorPosition(Console.CursorLeft, ++Console.CursorTop);
+                        GoToDefautPosition(chars, defPos-2, defPos - 7, defPosY: Console.CursorTop);
+                        
                     }
-
                 }
                 else if (char.IsLetterOrDigit(info.KeyChar) || 
                     char.IsWhiteSpace(info.KeyChar) || 
@@ -342,13 +368,8 @@ namespace Console_Text_Editor
                         letterPosition = lastColumnEndTextPosiotion - (lastColumnFilledSpace - letterPosition);
                         chars.Insert(letterPosition, info.KeyChar);
                     }
-                    //chars.Add(info.KeyChar);
                 }
-
-               /* Console.WriteLine($"  {chars.Count}  {Console.BufferWidth}   ");*/
-                
             }
-            
             return new string(chars.ToArray());
         }
     }
