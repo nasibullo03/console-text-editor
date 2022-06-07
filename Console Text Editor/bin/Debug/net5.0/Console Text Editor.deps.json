@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Console Text Editor/1.0.0": {
+        "runtime": {
+          "Console Text Editor.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Console Text Editor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

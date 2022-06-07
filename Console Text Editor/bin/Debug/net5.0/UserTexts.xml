@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<UserTexts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TextsList>
+    <UserText>
+      <text>First text</text>
+      <date_of_creation>03.06.2022 23:00:13</date_of_creation>
+      <date_of_change>03.06.2022 23:00:12</date_of_change>
+    </UserText>
+    <UserText>
+      <text>Second text</text>
+      <date_of_creation>03.06.2022 23:00:13</date_of_creation>
+      <date_of_change>03.06.2022 23:00:13</date_of_change>
+    </UserText>
+  </TextsList>
+</UserTexts>
