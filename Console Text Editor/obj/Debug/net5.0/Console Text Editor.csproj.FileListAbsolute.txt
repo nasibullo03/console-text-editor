@@ -14,3 +14,19 @@ C:\Users\Admin\source\repos\Console Text Editor\Console Text Editor\obj\Debug\ne
 C:\Users\Admin\source\repos\Console Text Editor\Console Text Editor\obj\Debug\net5.0\ref\Console Text Editor.dll
 C:\Users\Admin\source\repos\Console Text Editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.pdb
 C:\Users\Admin\source\repos\Console Text Editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.genruntimeconfig.cache
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.exe
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.deps.json
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.runtimeconfig.json
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.dll
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\ref\Console Text Editor.dll
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\bin\Debug\net5.0\Console Text Editor.pdb
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.AssemblyInfo.cs
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.dll
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\ref\Console Text Editor.dll
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.pdb
+C:\Users\Admin\source\repos\console-text-editor\Console Text Editor\obj\Debug\net5.0\Console Text Editor.genruntimeconfig.cache
