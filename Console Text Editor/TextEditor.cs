@@ -10,10 +10,10 @@ class TextEditor
     /// <returns></returns>
     public static string Edit(string text)
     {
-        return ReadLine(text);
+        return ReadConsole(text);
     }
 
-    private static void GoToDefautPosition(List<char> chars, int defPosX, int startPosition, int defPosY = 0)
+    public static void GoToDefautPosition(List<char> chars, int defPosX, int startPosition, int defPosY = 0)
     {
         if (defPosY == 0)
         {
@@ -47,6 +47,11 @@ class TextEditor
     }
 
     private static string ReadLine(string Default)
+    {
+        return "";
+    }
+    
+    private static string ReadConsole(string Default)
     {
         int pos = Console.CursorLeft, defPos = Console.CursorLeft;
         bool CursorLeftZero = false;
